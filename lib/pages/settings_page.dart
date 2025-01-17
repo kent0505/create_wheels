@@ -55,6 +55,7 @@ class SettingsPage extends StatelessWidget {
                               'Are you sure? All saved data will be cleared. Please, confirm your action.',
                           onPressed: () {
                             context.read<WheelBloc>().add(ClearWheels());
+                            Navigator.pop(context);
                           },
                         );
                       },

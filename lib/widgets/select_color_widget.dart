@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../data/utils.dart';
 import 'button.dart';
 
 class SelectColorWidget extends StatelessWidget {
@@ -20,31 +21,31 @@ class SelectColorWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _Button(
-            color: Color(0xffA13DFF),
+            color: intToColor(1),
             currentColor: currentColor,
             onPressed: onPressed,
           ),
           SizedBox(width: 16),
           _Button(
-            color: Color(0xff12C4FF),
+            color: intToColor(2),
             currentColor: currentColor,
             onPressed: onPressed,
           ),
           SizedBox(width: 16),
           _Button(
-            color: Color(0xffAA0003),
+            color: intToColor(3),
             currentColor: currentColor,
             onPressed: onPressed,
           ),
           SizedBox(width: 16),
           _Button(
-            color: Color(0xff20EB01),
+            color: intToColor(4),
             currentColor: currentColor,
             onPressed: onPressed,
           ),
           SizedBox(width: 16),
           _Button(
-            color: Color(0xffFFAA0B),
+            color: intToColor(5),
             currentColor: currentColor,
             onPressed: onPressed,
           ),

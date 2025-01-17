@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../controllers/wheel/wheel_bloc.dart';
+import '../data/utils.dart';
+import '../data/wheel.dart';
 import '../widgets/button.dart';
 import '../widgets/field_widget.dart';
 import '../widgets/green_button.dart';
@@ -50,7 +54,16 @@ class _AddAnswersPageState extends State<AddAnswersPage> {
     });
   }
 
-  void onCreate() {}
+  void onCreate() {
+    final wheel = Wheel(
+      id: getTimestamp(),
+      title: widget.title,
+      color: colorToInt(widget.color),
+      answers: controllers.map((controller) => controller.text).toList(),
+    );
+    context.read<WheelBloc>().add(AddWheel(wheel: wheel));
+    Navigator.popUntil(context, (route) => route.isFirst);
+  }
 
   @override
   void dispose() {

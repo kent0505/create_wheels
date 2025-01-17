@@ -6,21 +6,34 @@ class WheelWidget extends StatelessWidget {
   const WheelWidget({
     super.key,
     required this.color,
+    this.dimension = 358,
   });
 
   final Color color;
+  final double dimension;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox.square(
-        dimension: 358,
+        dimension: dimension,
         child: Stack(
           children: [
             SvgWidget('assets/w1.svg'),
-            CircleDivider(
-              strings: ['a', 'b', 'c', 'd', 'e', 'f'],
-              color: color,
+            Center(
+              child: Container(
+                height: 320,
+                width: 320,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: CustomPaint(
+                  painter: CirclePainter(
+                    segments: 4,
+                    color: color,
+                  ),
+                ),
+              ),
             ),
             Center(
               child: SvgWidget('assets/w2.svg'),
@@ -35,46 +48,14 @@ class WheelWidget extends StatelessWidget {
   }
 }
 
-class CircleDivider extends StatelessWidget {
-  const CircleDivider({
-    super.key,
-    required this.strings,
-    required this.color,
-  });
-
-  final List<String> strings;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        height: 320,
-        width: 320,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-        ),
-        child: CustomPaint(
-          painter: CirclePainter(
-            segments: strings.length,
-            color: color,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class CirclePainter extends CustomPainter {
   CirclePainter({
     required this.segments,
     required this.color,
-    this.startAngle = 3.141592653589793 / 2, // Default start from the left
   });
 
   final int segments;
   final Color color;
-  final double startAngle; // Allows custom start position
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -87,7 +68,7 @@ class CirclePainter extends CustomPainter {
 
     for (int i = 0; i < segments; i++) {
       paint.color = (i % 2 == 0) ? color : Colors.white;
-      final segmentStartAngle = startAngle + i * sweepAngle;
+      final segmentStartAngle = 3.141592653589793 / 2 + i * sweepAngle;
       canvas.drawArc(
         Rect.fromCircle(center: center, radius: radius),
         segmentStartAngle,
