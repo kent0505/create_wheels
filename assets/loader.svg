@@ -1,0 +1,28 @@
+<svg width="72" height="73" viewBox="0 0 72 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M72 37C72 56.8823 55.8823 73 36 73C16.1177 73 0 56.8823 0 37C0 17.1177 16.1177 1 36 1C55.8823 1 72 17.1177 72 37ZM14.4 37C14.4 48.9294 24.0707 58.6 36 58.6C47.9294 58.6 57.6 48.9294 57.6 37C57.6 25.0707 47.9294 15.4 36 15.4C24.0707 15.4 14.4 25.0707 14.4 37Z" fill="#07223D"/>
+<circle cx="38.88" cy="8.2" r="7.2" fill="#AED313"/>
+<g filter="url(#filter0_f_40000005_17775)">
+<circle cx="38.88" cy="8.2" r="6.7" stroke="#AED313"/>
+</g>
+<g opacity="0.5" filter="url(#filter1_f_40000005_17775)">
+<ellipse cx="38.88" cy="7.96" rx="6" ry="0.96" fill="#AED313"/>
+</g>
+<circle opacity="0.2" cx="34.32" cy="9.39992" r="0.48" fill="#AED313"/>
+<circle opacity="0.2" cx="36.48" cy="3.39991" r="0.24" fill="#AED313"/>
+<circle opacity="0.2" cx="36.72" cy="11.8001" r="0.48" fill="#AED313"/>
+<circle opacity="0.2" cx="42.72" cy="11.3201" r="0.96" fill="#AED313"/>
+<circle opacity="0.2" cx="42.48" cy="3.63991" r="0.48" fill="#AED313"/>
+<circle opacity="0.2" cx="37.2" cy="6.52006" r="0.96" fill="#AED313"/>
+<defs>
+<filter id="filter0_f_40000005_17775" x="30.68" y="0" width="16.4" height="16.3999" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="0.5" result="effect1_foregroundBlur_40000005_17775"/>
+</filter>
+<filter id="filter1_f_40000005_17775" x="30.88" y="5" width="16" height="5.91992" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="1" result="effect1_foregroundBlur_40000005_17775"/>
+</filter>
+</defs>
+</svg>
