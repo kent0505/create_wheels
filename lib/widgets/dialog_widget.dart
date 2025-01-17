@@ -48,7 +48,7 @@ class DialogWidget extends StatelessWidget {
             const Spacer(),
             Container(
               height: 1,
-              color: Color(0xff545458).withValues(alpha: 0.65),
+              color: Color(0xff545458).withOpacity(0.65),
             ),
             Row(
               children: [
@@ -64,7 +64,7 @@ class DialogWidget extends StatelessWidget {
                 Container(
                   height: 44,
                   width: 1,
-                  color: Color(0xff545458).withValues(alpha: 0.65),
+                  color: Color(0xff545458).withOpacity(0.65),
                 ),
                 _Button(
                   title: 'Cancel',
