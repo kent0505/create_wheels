@@ -6,12 +6,12 @@ import 'button.dart';
 class SelectColorWidget extends StatelessWidget {
   const SelectColorWidget({
     super.key,
-    required this.currentColor,
+    required this.color,
     required this.onPressed,
   });
 
-  final Color currentColor;
-  final void Function(Color) onPressed;
+  final int color;
+  final void Function(int) onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -21,32 +21,32 @@ class SelectColorWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _Button(
-            color: intToColor(1),
-            currentColor: currentColor,
+            id: 1,
+            color: color,
             onPressed: onPressed,
           ),
           SizedBox(width: 16),
           _Button(
-            color: intToColor(2),
-            currentColor: currentColor,
+            id: 2,
+            color: color,
             onPressed: onPressed,
           ),
           SizedBox(width: 16),
           _Button(
-            color: intToColor(3),
-            currentColor: currentColor,
+            id: 3,
+            color: color,
             onPressed: onPressed,
           ),
           SizedBox(width: 16),
           _Button(
-            color: intToColor(4),
-            currentColor: currentColor,
+            id: 4,
+            color: color,
             onPressed: onPressed,
           ),
           SizedBox(width: 16),
           _Button(
-            color: intToColor(5),
-            currentColor: currentColor,
+            id: 5,
+            color: color,
             onPressed: onPressed,
           ),
         ],
@@ -57,31 +57,31 @@ class SelectColorWidget extends StatelessWidget {
 
 class _Button extends StatelessWidget {
   const _Button({
+    required this.id,
     required this.color,
-    required this.currentColor,
     required this.onPressed,
   });
 
-  final Color color;
-  final Color currentColor;
-  final void Function(Color) onPressed;
+  final int id;
+  final int color;
+  final void Function(int) onPressed;
 
   @override
   Widget build(BuildContext context) {
-    final active = color == currentColor;
+    final active = id == color;
 
     return Button(
       onPressed: active
           ? null
           : () {
-              onPressed(color);
+              onPressed(id);
             },
       child: AnimatedContainer(
         duration: Duration(milliseconds: 400),
         height: active ? 52 : 44,
         width: active ? 52 : 44,
         decoration: BoxDecoration(
-          color: color,
+          color: intToColor(id),
           borderRadius: BorderRadius.circular(active ? 12 : 8),
         ),
         child: Center(

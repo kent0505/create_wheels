@@ -18,7 +18,7 @@ class AddAnswersPage extends StatefulWidget {
   });
 
   final String title;
-  final Color color;
+  final int color;
 
   @override
   State<AddAnswersPage> createState() => _AddAnswersPageState();
@@ -58,7 +58,7 @@ class _AddAnswersPageState extends State<AddAnswersPage> {
     final wheel = Wheel(
       id: getTimestamp(),
       title: widget.title,
-      color: colorToInt(widget.color),
+      color: widget.color,
       answers: controllers.map((controller) => controller.text).toList(),
     );
     context.read<WheelBloc>().add(AddWheel(wheel: wheel));

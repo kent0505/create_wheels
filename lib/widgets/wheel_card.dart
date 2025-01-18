@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/utils.dart';
 import '../data/wheel.dart';
+import '../pages/spin_page.dart';
 import 'button.dart';
 
 class WheelCard extends StatelessWidget {
@@ -21,7 +22,16 @@ class WheelCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Button(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return SpinPage(wheel: wheel);
+              },
+            ),
+          );
+        },
         child: Column(
           children: [
             SizedBox(height: 16),

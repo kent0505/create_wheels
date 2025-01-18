@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../data/wheel.dart';
 import '../widgets/field_widget.dart';
 import '../widgets/green_button.dart';
 import '../widgets/my_appbar.dart';
@@ -8,7 +9,9 @@ import '../widgets/wheel_widget.dart';
 import 'add_answers_page.dart';
 
 class CreateWheelPage extends StatefulWidget {
-  const CreateWheelPage({super.key});
+  const CreateWheelPage({super.key, this.wheel});
+
+  final Wheel? wheel;
 
   @override
   State<CreateWheelPage> createState() => _CreateWheelPageState();
@@ -16,11 +19,16 @@ class CreateWheelPage extends StatefulWidget {
 
 class _CreateWheelPageState extends State<CreateWheelPage> {
   final controller = TextEditingController();
-  Color color = Color(0xffAA0003);
+  Wheel wheel = Wheel(
+    id: 0,
+    title: '',
+    color: 3,
+    answers: [],
+  );
 
-  void onColor(Color value) {
+  void onColor(int value) {
     setState(() {
-      color = value;
+      wheel.color = value;
     });
   }
 
@@ -35,11 +43,18 @@ class _CreateWheelPageState extends State<CreateWheelPage> {
         builder: (context) {
           return AddAnswersPage(
             title: controller.text,
-            color: color,
+            color: wheel.color,
           );
         },
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.wheel != null) wheel = widget.wheel!;
+    controller.text = wheel.title;
   }
 
   @override
@@ -53,7 +68,9 @@ class _CreateWheelPageState extends State<CreateWheelPage> {
     return Scaffold(
       body: Column(
         children: [
-          MyAppbar(title: 'Create Wheel'),
+          MyAppbar(
+            title: wheel.title.isEmpty ? 'Create Wheel' : 'Customize Wheel',
+          ),
           Expanded(
             child: ListView(
               padding: EdgeInsets.symmetric(horizontal: 16),
@@ -68,10 +85,14 @@ class _CreateWheelPageState extends State<CreateWheelPage> {
                   ),
                 ),
                 SizedBox(height: 8),
-                WheelWidget(color: color),
+                WheelWidget(
+                  color: wheel.color,
+                  answers: wheel.answers,
+                  repaint: true,
+                ),
                 SizedBox(height: 16),
                 SelectColorWidget(
-                  currentColor: color,
+                  color: wheel.color,
                   onPressed: onColor,
                 ),
                 SizedBox(height: 16),
@@ -90,6 +111,7 @@ class _CreateWheelPageState extends State<CreateWheelPage> {
                   onChanged: onTitle,
                   onSuffix: () {
                     controller.clear();
+                    onTitle();
                   },
                 ),
                 SizedBox(height: 66),
