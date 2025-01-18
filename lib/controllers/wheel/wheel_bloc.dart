@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,8 +19,22 @@ class WheelBloc extends Bloc<WheelEvent, WheelState> {
       emit(WheelsLoaded(wheels: wheels));
     });
 
-    on<AddWheel>((event, emit) async {
-      wheels.insert(0, event.wheel);
+    on<UpdateWheels>((event, emit) async {
+      if (event.add) {
+        log('ADD');
+        wheels.insert(0, event.wheel);
+      } else if (event.delete) {
+        log('DELETE');
+        wheels.removeWhere((element) => element.id == event.wheel.id);
+      } else if (event.edit) {
+        log('EDIT');
+        final wheel = wheels.singleWhere(
+          (element) => element.id == event.wheel.id,
+        );
+        wheel.title = event.wheel.title;
+        wheel.color = event.wheel.color;
+        wheel.answers = event.wheel.answers;
+      }
       await updateWheels();
       emit(WheelsLoaded(wheels: wheels));
     });

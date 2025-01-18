@@ -25,25 +25,21 @@ class SelectColorWidget extends StatelessWidget {
             color: color,
             onPressed: onPressed,
           ),
-          SizedBox(width: 16),
           _Button(
             id: 2,
             color: color,
             onPressed: onPressed,
           ),
-          SizedBox(width: 16),
           _Button(
             id: 3,
             color: color,
             onPressed: onPressed,
           ),
-          SizedBox(width: 16),
           _Button(
             id: 4,
             color: color,
             onPressed: onPressed,
           ),
-          SizedBox(width: 16),
           _Button(
             id: 5,
             color: color,
@@ -80,6 +76,7 @@ class _Button extends StatelessWidget {
         duration: Duration(milliseconds: 400),
         height: active ? 52 : 44,
         width: active ? 52 : 44,
+        margin: EdgeInsets.symmetric(horizontal: active ? 4 : 8),
         decoration: BoxDecoration(
           color: intToColor(id),
           borderRadius: BorderRadius.circular(active ? 12 : 8),

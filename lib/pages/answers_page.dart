@@ -10,27 +10,20 @@ import '../widgets/green_button.dart';
 import '../widgets/my_appbar.dart';
 import '../widgets/svg_widget.dart';
 
-class AddAnswersPage extends StatefulWidget {
-  const AddAnswersPage({
-    super.key,
-    required this.title,
-    required this.color,
-  });
+class AnswersPage extends StatefulWidget {
+  const AnswersPage({super.key, required this.wheel});
 
-  final String title;
-  final int color;
+  final Wheel wheel;
 
   @override
-  State<AddAnswersPage> createState() => _AddAnswersPageState();
+  State<AnswersPage> createState() => _AnswersPageState();
 }
 
-class _AddAnswersPageState extends State<AddAnswersPage> {
-  List<TextEditingController> controllers = [
-    TextEditingController(),
-    TextEditingController(),
-  ];
+class _AnswersPageState extends State<AnswersPage> {
+  List<TextEditingController> controllers = [];
 
   bool active = false;
+  bool add = false;
 
   void onAdd() {
     setState(() {
@@ -55,19 +48,29 @@ class _AddAnswersPageState extends State<AddAnswersPage> {
   }
 
   void onCreate() {
-    final wheel = Wheel(
-      id: getTimestamp(),
-      title: widget.title,
-      color: widget.color,
-      answers: controllers.map((controller) => controller.text).toList(),
-    );
-    context.read<WheelBloc>().add(AddWheel(wheel: wheel));
+    widget.wheel.id = getTimestamp();
+    widget.wheel.answers = controllers.map((con) => con.text).toList();
+    context.read<WheelBloc>().add(UpdateWheels(
+          wheel: widget.wheel,
+          add: add ? true : false,
+          edit: add ? false : true,
+        ));
     Navigator.popUntil(context, (route) => route.isFirst);
   }
 
   @override
+  void initState() {
+    super.initState();
+    for (String answer in widget.wheel.answers) {
+      controllers.add(TextEditingController(text: answer));
+    }
+    add = widget.wheel.answers[0].isEmpty;
+    onChanged();
+  }
+
+  @override
   void dispose() {
-    for (TextEditingController controller in controllers) {
+    for (var controller in controllers) {
       controller.dispose();
     }
     super.dispose();
@@ -119,7 +122,7 @@ class _AddAnswersPageState extends State<AddAnswersPage> {
                 ),
                 SizedBox(height: 96),
                 GreenButton(
-                  title: 'Create the Wheel',
+                  title: add ? 'Create the Wheel' : 'Edit the Wheel',
                   active: active,
                   onPressed: onCreate,
                 ),

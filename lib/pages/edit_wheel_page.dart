@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../controllers/wheel/wheel_bloc.dart';
 import '../data/wheel.dart';
+import '../widgets/dialog_widget.dart';
 import '../widgets/field_widget.dart';
 import '../widgets/green_button.dart';
 import '../widgets/my_appbar.dart';
@@ -8,14 +11,16 @@ import '../widgets/select_color_widget.dart';
 import '../widgets/wheel_widget.dart';
 import 'answers_page.dart';
 
-class CreateWheelPage extends StatefulWidget {
-  const CreateWheelPage({super.key});
+class EditWheelPage extends StatefulWidget {
+  const EditWheelPage({super.key, required this.wheel});
+
+  final Wheel wheel;
 
   @override
-  State<CreateWheelPage> createState() => _CreateWheelPageState();
+  State<EditWheelPage> createState() => _EditWheelPageState();
 }
 
-class _CreateWheelPageState extends State<CreateWheelPage> {
+class _EditWheelPageState extends State<EditWheelPage> {
   final controller = TextEditingController();
   Wheel wheel = Wheel(
     id: 0,
@@ -47,6 +52,32 @@ class _CreateWheelPageState extends State<CreateWheelPage> {
     );
   }
 
+  void onDelete() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogWidget(
+          title: 'Delete wheel',
+          description: 'Are you sure?',
+          left: 'Delete',
+          onPressed: () {
+            context
+                .read<WheelBloc>()
+                .add(UpdateWheels(wheel: wheel, delete: true));
+            Navigator.popUntil(context, (route) => route.isFirst);
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    wheel = widget.wheel;
+    controller.text = wheel.title;
+  }
+
   @override
   void dispose() {
     controller.dispose();
@@ -58,7 +89,11 @@ class _CreateWheelPageState extends State<CreateWheelPage> {
     return Scaffold(
       body: Column(
         children: [
-          MyAppbar(title: 'Create Wheel'),
+          MyAppbar(
+            title: 'Customize Wheel',
+            asset: 'delete',
+            onPressed: onDelete,
+          ),
           Expanded(
             child: ListView(
               padding: EdgeInsets.symmetric(horizontal: 16),

@@ -53,6 +53,7 @@ class SettingsPage extends StatelessWidget {
                           title: 'Clear data',
                           description:
                               'Are you sure? All saved data will be cleared. Please, confirm your action.',
+                          left: 'Clear Data',
                           onPressed: () {
                             context.read<WheelBloc>().add(ClearWheels());
                             Navigator.pop(context);

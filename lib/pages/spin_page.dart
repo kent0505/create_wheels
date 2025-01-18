@@ -4,7 +4,7 @@ import '../data/wheel.dart';
 import '../widgets/green_button.dart';
 import '../widgets/my_appbar.dart';
 import '../widgets/wheel_widget.dart';
-import 'create_wheel_page.dart';
+import 'edit_wheel_page.dart';
 
 class SpinPage extends StatelessWidget {
   const SpinPage({
@@ -27,7 +27,7 @@ class SpinPage extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return CreateWheelPage(wheel: wheel);
+                    return EditWheelPage(wheel: wheel);
                   },
                 ),
               );

@@ -7,11 +7,13 @@ class DialogWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.description,
+    required this.left,
     required this.onPressed,
   });
 
   final String title;
   final String description;
+  final String left;
   final void Function() onPressed;
 
   @override
@@ -53,7 +55,7 @@ class DialogWidget extends StatelessWidget {
             Row(
               children: [
                 _Button(
-                  title: 'Clear Data',
+                  title: left,
                   color: Color(0xffFF3B30),
                   fontFamily: 'w700',
                   onPressed: () {
