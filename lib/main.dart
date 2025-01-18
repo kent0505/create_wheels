@@ -32,3 +32,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// dart pub global activate fvm
+// fvm install 3.24.2
+// fvm use 3.24.2 --force

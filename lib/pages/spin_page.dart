@@ -82,8 +82,7 @@ class SpinPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 40),
-                BlocConsumer<SpinBloc, SpinState>(
-                  listener: (context, state) {},
+                BlocBuilder<SpinBloc, SpinState>(
                   builder: (context, state) {
                     return Text(
                       state is SpinInitial

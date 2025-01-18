@@ -24,7 +24,6 @@ class SpinBloc extends Bloc<SpinEvent, SpinState> {
       Random random = Random();
       int randomIndex = random.nextInt(getAngles(len).length);
       double angle = getAngles(len)[randomIndex];
-      print(getAngles(len)[randomIndex]);
       turns += 6;
       emit(SpinStopped(turns: turns + angle));
       await Future.delayed(Duration(seconds: 10), () {

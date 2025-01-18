@@ -4,7 +4,7 @@ import 'wheel.dart';
 
 List<Wheel> wheels = [];
 
-Future<void> initHive() async {
+Future<void> hiveInit() async {
   await Hive.initFlutter();
   // await Hive.deleteBoxFromDisk('create_wheels_box');
   Hive.registerAdapter(WheelAdapter());

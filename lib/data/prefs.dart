@@ -2,8 +2,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> getPrefs() async {
   final prefs = await SharedPreferences.getInstance();
-  // await prefs.remove('onboard');
-  // await prefs.clear();
   prefs.getBool('onboard') ?? true;
 }
 

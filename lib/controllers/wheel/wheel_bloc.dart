@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,20 +13,17 @@ class WheelBloc extends Bloc<WheelEvent, WheelState> {
   WheelBloc() : super(WheelInitial()) {
     on<LoadWheels>((event, emit) async {
       await getPrefs();
-      await initHive();
+      await hiveInit();
       await getWheels();
       emit(WheelsLoaded(wheels: wheels));
     });
 
     on<UpdateWheels>((event, emit) async {
       if (event.add) {
-        log('ADD');
         wheels.insert(0, event.wheel);
       } else if (event.delete) {
-        log('DELETE');
         wheels.removeWhere((element) => element.id == event.wheel.id);
       } else if (event.edit) {
-        log('EDIT');
         final wheel = wheels.singleWhere(
           (element) => element.id == event.wheel.id,
         );

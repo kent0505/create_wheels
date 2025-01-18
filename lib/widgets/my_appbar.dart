@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../controllers/spin/spin_bloc.dart';
 import '../pages/settings_page.dart';
 import 'button.dart';
 import 'svg_widget.dart';
@@ -94,19 +96,23 @@ class _Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Button(
-      onPressed: onPressed,
-      child: Container(
-        height: 52,
-        width: 52,
-        decoration: BoxDecoration(
-          color: Color(0xff07223D),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Center(
-          child: SvgWidget('assets/$asset.svg'),
-        ),
-      ),
+    return BlocBuilder<SpinBloc, SpinState>(
+      builder: (context, state) {
+        return Button(
+          onPressed: state is SpinStopped && !state.canSpin ? null : onPressed,
+          child: Container(
+            height: 52,
+            width: 52,
+            decoration: BoxDecoration(
+              color: Color(0xff07223D),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Center(
+              child: SvgWidget('assets/$asset.svg'),
+            ),
+          ),
+        );
+      },
     );
   }
 }
