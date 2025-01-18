@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'controllers/spin/spin_bloc.dart';
 import 'controllers/wheel/wheel_bloc.dart';
 import 'pages/splash_page.dart';
 
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => WheelBloc()..add(LoadWheels()))
+        BlocProvider(create: (context) => WheelBloc()..add(LoadWheels())),
+        BlocProvider(create: (context) => SpinBloc())
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

@@ -28,7 +28,7 @@ class FieldWidget extends StatelessWidget {
       minLines: 1,
       maxLines: maxLines,
       inputFormatters: [
-        LengthLimitingTextInputFormatter(maxLines == 1 ? 20 : 50),
+        LengthLimitingTextInputFormatter(maxLines == 1 ? 30 : 80),
       ],
       textCapitalization: TextCapitalization.sentences,
       style: const TextStyle(

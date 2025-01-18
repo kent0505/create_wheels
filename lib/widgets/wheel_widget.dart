@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../data/utils.dart';
 import 'degree_widget.dart';
 import 'svg_widget.dart';
+import 'wheel_arrow.dart';
 
 class WheelWidget extends StatelessWidget {
   const WheelWidget({
@@ -11,12 +12,14 @@ class WheelWidget extends StatelessWidget {
     required this.answers,
     this.repaint = false,
     this.small = false,
+    this.spin = false,
   });
 
   final int color;
   final List<String> answers;
   final bool repaint;
   final bool small;
+  final bool spin;
 
   @override
   Widget build(BuildContext context) {
@@ -41,35 +44,13 @@ class WheelWidget extends StatelessWidget {
                 height: small ? 72 : null,
               ),
             ),
-            Center(
-              child: Container(
-                height: small ? 12 : 56,
-                width: small ? 12 : 56,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(small ? 0.3 : 0.4),
-                      blurRadius: small ? 2 : 10,
-                      spreadRadius: 1,
-                      offset: Offset(0, small ? 0 : 4),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Center(
-              child: SvgWidget(
-                'assets/w3.svg',
-                height: small ? 18 : null,
-              ),
-            ),
+            if (!spin) WheelArrow(small: small),
             if (answers[0].isNotEmpty) ...[
               if (answers.length == 2) ...[
                 _Answers(
                   answer1: answers[0],
                   answer2: answers[1],
-                  color2: intToColor(color),
+                  color2: getColor(color),
                   small: small,
                 ),
               ] else if (answers.length == 4) ...[
@@ -77,8 +58,8 @@ class WheelWidget extends StatelessWidget {
                   answer1: answers[0],
                   answer2: answers[2],
                   degree: 44,
-                  color1: intToColor(color),
-                  color2: intToColor(color),
+                  color1: getColor(color),
+                  color2: getColor(color),
                   small: small,
                 ),
                 _Answers(
@@ -92,21 +73,21 @@ class WheelWidget extends StatelessWidget {
                   answer1: answers[0],
                   answer2: answers[3],
                   degree: 30,
-                  color2: intToColor(color),
+                  color2: getColor(color),
                   small: small,
                 ),
                 _Answers(
                   answer1: answers[1],
                   answer2: answers[4],
                   degree: 150,
-                  color2: intToColor(color),
+                  color2: getColor(color),
                   small: small,
                 ),
                 _Answers(
                   answer1: answers[2],
                   answer2: answers[5],
                   degree: 90,
-                  color1: intToColor(color),
+                  color1: getColor(color),
                   small: small,
                 ),
               ] else if (answers.length == 8) ...[
@@ -114,8 +95,8 @@ class WheelWidget extends StatelessWidget {
                   answer1: answers[0],
                   answer2: answers[4],
                   degree: 23,
-                  color1: intToColor(color),
-                  color2: intToColor(color),
+                  color1: getColor(color),
+                  color2: getColor(color),
                   small: small,
                 ),
                 _Answers(
@@ -128,8 +109,8 @@ class WheelWidget extends StatelessWidget {
                   answer1: answers[2],
                   answer2: answers[6],
                   degree: 113,
-                  color1: intToColor(color),
-                  color2: intToColor(color),
+                  color1: getColor(color),
+                  color2: getColor(color),
                   small: small,
                 ),
                 _Answers(
@@ -180,7 +161,7 @@ class _Answers extends StatelessWidget {
                   width: small ? 24 : 100,
                   child: Text(
                     answer1,
-                    maxLines: 2,
+                    maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: color1,
@@ -198,7 +179,7 @@ class _Answers extends StatelessWidget {
                   child: Text(
                     answer2,
                     textAlign: TextAlign.end,
-                    maxLines: 2,
+                    maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: color2,

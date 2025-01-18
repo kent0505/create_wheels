@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../controllers/spin/spin_bloc.dart';
 import '../data/utils.dart';
 import '../data/wheel.dart';
 import '../pages/spin_page.dart';
@@ -21,6 +23,7 @@ class WheelCard extends StatelessWidget {
       ),
       child: Button(
         onPressed: () {
+          context.read<SpinBloc>().add(ResetSpin());
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -51,7 +54,7 @@ class WheelCard extends StatelessWidget {
                       color: Colors.white,
                       fontSize: 16,
                       fontFamily: 'w900',
-                      height: 1.5,
+                      // height: 1.5,
                     ),
                   ),
                 ),

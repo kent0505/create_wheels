@@ -78,7 +78,7 @@ class _Button extends StatelessWidget {
         width: active ? 52 : 44,
         margin: EdgeInsets.symmetric(horizontal: active ? 4 : 8),
         decoration: BoxDecoration(
-          color: intToColor(id),
+          color: getColor(id),
           borderRadius: BorderRadius.circular(active ? 12 : 8),
         ),
         child: Center(
