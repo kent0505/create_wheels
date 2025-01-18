@@ -4,12 +4,10 @@ import '../data/utils.dart';
 import '../data/wheel.dart';
 import '../pages/spin_page.dart';
 import 'button.dart';
+import 'wheel_widget.dart';
 
 class WheelCard extends StatelessWidget {
-  const WheelCard({
-    super.key,
-    required this.wheel,
-  });
+  const WheelCard({super.key, required this.wheel});
 
   final Wheel wheel;
 
@@ -35,6 +33,11 @@ class WheelCard extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 16),
+            WheelWidget(
+              color: wheel.color,
+              answers: wheel.answers,
+              small: true,
+            ),
             Expanded(
               child: Center(
                 child: Padding(

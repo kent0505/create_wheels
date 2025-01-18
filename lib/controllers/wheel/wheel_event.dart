@@ -22,3 +22,9 @@ class UpdateWheels extends WheelEvent {
 }
 
 class ClearWheels extends WheelEvent {}
+
+class UseWheel extends WheelEvent {
+  UseWheel({required this.wheel});
+
+  final Wheel wheel;
+}

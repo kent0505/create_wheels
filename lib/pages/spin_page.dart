@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../controllers/wheel/wheel_bloc.dart';
 import '../data/wheel.dart';
 import '../widgets/green_button.dart';
 import '../widgets/my_appbar.dart';
@@ -7,10 +9,7 @@ import '../widgets/wheel_widget.dart';
 import 'edit_wheel_page.dart';
 
 class SpinPage extends StatelessWidget {
-  const SpinPage({
-    super.key,
-    required this.wheel,
-  });
+  const SpinPage({super.key, required this.wheel});
 
   final Wheel wheel;
 
@@ -62,18 +61,22 @@ class SpinPage extends StatelessWidget {
                   answers: wheel.answers,
                 ),
                 SizedBox(height: 40),
-                Text(
-                  'Start Spin the Wheel',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontFamily: 'w900',
+                Center(
+                  child: Text(
+                    'Start Spin the Wheel',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                      fontFamily: 'w900',
+                    ),
                   ),
                 ),
                 SizedBox(height: 34),
                 GreenButton(
                   title: 'Spin the Wheel',
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<WheelBloc>().add(UseWheel(wheel: wheel));
+                  },
                 ),
                 SizedBox(height: 42),
               ],

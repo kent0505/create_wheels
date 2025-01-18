@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/db.dart';
 import '../../data/prefs.dart';
+import '../../data/utils.dart';
 import '../../data/wheel.dart';
 
 part 'wheel_event.dart';
@@ -42,6 +43,15 @@ class WheelBloc extends Bloc<WheelEvent, WheelState> {
     on<ClearWheels>((event, emit) async {
       wheels = [];
       await clearPrefs();
+      await updateWheels();
+      emit(WheelsLoaded(wheels: wheels));
+    });
+
+    on<UseWheel>((event, emit) async {
+      final wheel = wheels.singleWhere(
+        (element) => element.id == event.wheel.id,
+      );
+      wheel.id = getTimestamp();
       await updateWheels();
       emit(WheelsLoaded(wheels: wheels));
     });

@@ -24,11 +24,6 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           scaffoldBackgroundColor: Color(0xff03111D),
           useMaterial3: false,
-          dialogTheme: const DialogTheme(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(14)),
-            ),
-          ),
         ),
         home: SplashPage(),
       ),
